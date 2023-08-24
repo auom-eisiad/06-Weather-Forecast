@@ -36,7 +36,13 @@ N/A
 
 The code for the challenge can be found in the following file:
 
+- [index.html](/src/index.html): Contains the HTML structure of the landing page.
+
+- [style.css](/src/style.css): Contains the CSS styles for the landing page.
+
 - [script.js](/src/script.js): Contains the Javascript code of the landing page.
+
+--------------
 
 - [script.js](/src/script.js) LINE 00: Based on the work of [Author](link)
 
