@@ -1,7 +1,7 @@
 :root {
-    --ftfam1: ;
-    --ftfam2: ;
-    --ftfam3: ;
+    --ftfam1: 'DM Serif Display', serif;
+    --ftfam2: 'Roboto Slab', serif;
+    --ftfam3: 'Playfair Display', serif;
     --ftsize: ;
     --c1: ;
     --c2: ;
