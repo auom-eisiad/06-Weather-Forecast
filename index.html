@@ -21,17 +21,27 @@
       crossorigin="anonymous"
     />
     <link rel='stylesheet' type='text/css' media='screen' href='./assets/style.css'>
+    <link rel="bookmark icon" type="image/icon" href="./assets/images/icon.png"> 
     
     <!-- Google Stuff -->
 
 </head>
 <body>
     <header>
-        <h1></h1>
+        <h1 class="weatherTitle">Weather Dashboard</h1>
     </header>
 
     <main>
-        <div></div>
+        <div class="searchBox">
+          <form id="search-form" class="searchForm">
+            <input id="search-input" class="searchInput" />
+          </form>
+        </div>
+
+        <div class="searchHistory"></div>
+
+        <div class="weatherForecast"></div>
+
     </main>
     
     <!-- jQuery, Dayjs, and Javascript -->
