@@ -44,13 +44,19 @@
         <h1 class="weatherTitle">Weather Dashboard</h1>
     </header>
 
-    <main>
+    <main class="flex-row justify-space-between">
+      <div class="col-12 col-md-4">
+
         <div class="searchBox">
+          <h3 class="search-header text-uppercase">Search by City</h3>
           <form id="search-form" class="searchForm">
-            <input id="search-input" class="searchInput" type="text" placeholder="Type city name here" />
+            <label class="search-label" for="city name">City</label>
+            <input id="search-input" class="searchInput" type="text" placeholder="Type city name here" autofocus/>
           <button id="submit-button" class="submitBtn">Search</button>
           </form>
         </div>
+
+      </div>
 
         <div id="search-history" class="searchHistory"></div>
 
