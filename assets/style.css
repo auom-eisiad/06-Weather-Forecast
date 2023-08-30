@@ -1,62 +1,62 @@
 :root {
-    --ftfam1: 'DM Serif Display', serif;
-    --ftfam2: 'Playfair Display', serif;
-    --ftfam3: 'Roboto Slab', serif;
-    --ftsize: 3rem;
-    --bg1: linear-gradient(90deg, #ce9e3e 0%, #37b0c6 50%, #2d5475 100%);
-    --c1: #5691b3;
-    --c2: #4d4d4d;
-    --c3: #292929;
-    --w: #fff;
-    --offw: #e0dedf;
-    --b: #000;
-    --offb: #343231;
-    --brad: .3rem;
+  --ftfam1: 'DM Serif Display', serif;
+  --ftfam2: 'Playfair Display', serif;
+  --ftfam3: 'Roboto Slab', serif;
+  --ftsize: 3rem;
+  --bg1: linear-gradient(90deg, #ce9e3e 0%, #37b0c6 50%, #2d5475 100%);
+  --c1: #5691b3;
+  --c2: #4d4d4d;
+  --c3: #292929;
+  --w: #fff;
+  --offw: #e0dedf;
+  --b: #000;
+  --offb: #343231;
+  --brad: .3rem;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #53525f;
-    line-height: 1.5;
-    font-family: var(--ftfam3);
-    font-size: 16px;
-    font-weight: bold;
-    color: var(--w);
+  margin: 0;
+  padding: 0;
+  background-color: #53525f;
+  line-height: 1.5;
+  font-family: var(--ftfam3);
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--w);
 }
 
 header {
-    background-image: url(./images/header.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    padding: 1.5% 2%;
-    border-bottom: 5px solid var(--offb);
+  background-image: url(./images/header.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  padding: 1.5% 2%;
+  border-bottom: 5px solid var(--offb);
 }
 
 header h1 {
-    text-align: right;
-    position: relative;
-    right: 3rem;
-    font-family: var(--ftfam1);
-    font-size: 4rem;
-    color: var(--w);
+  text-align: right;
+  position: relative;
+  right: 3rem;
+  font-family: var(--ftfam1);
+  font-size: 4rem;
+  color: var(--w);
 }
 
 main {
-    margin: 20px auto;
-    width: 94%;
+  margin: 20px auto;
+  width: 94%;
 }
 
 .searchBox {
-    margin: 0 0 20px 0;
-    background-color: var(--c2);
-    border: 3px solid var(--c3);
-    border-radius: var(--brad);
+  margin: 0 0 20px 0;
+  background-color: var(--c2);
+  border: 3px solid var(--c3);
+  border-radius: var(--brad);
 }
 
 .searchHeader {
@@ -125,13 +125,30 @@ h3 {
     line-height: 1.25;
 }
 
-h2 {
+.weatherForecast h2 {
     display: block;
     font-size: 1.5em;
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+}
+
+.weatherToday {
+  margin: 0 0 20px 0;
+  background-color: var(--c2);
+  border: 3px solid var(--c3);
+  border-radius: var(--brad);
+}
+
+.cityName {
+    background-color: var(--c3);
+    padding: 2.5%;
+    border-radius: calc(-0.8200000000000003rem - 1px) calc(-0.8200000000000003rem - 1px) 0 0;
+}
+
+#weatherIcon::after {
+  color: var(--w);
 }
 
 /* HEIGHT / WIDTH UTILS */
