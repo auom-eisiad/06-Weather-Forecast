@@ -59,7 +59,10 @@ main {
   border-radius: var(--brad);
 }
 
-.searchHeader {
+.searchHeader,
+.historyHeader,
+.forecastHeader,
+.cityName {
     background-color: var(--c3);
     padding: 2.5%;
     border-radius: calc(-0.8200000000000003rem - 1px) calc(-0.8200000000000003rem - 1px) 0 0;
@@ -109,12 +112,6 @@ main {
     background-color: var(--c2);
     border: 3px solid var(--c3);
     border-radius: var(--brad);
-}
-
-.historyHeader {
-    background-color: var(--c3);
-    padding: 2.5%;
-    border-radius: calc(-0.8200000000000003rem - 1px) calc(-0.8200000000000003rem - 1px) 0 0;
 }
 
 h2,

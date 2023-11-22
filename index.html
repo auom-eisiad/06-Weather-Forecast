@@ -50,24 +50,22 @@
         <div class="searchBox">
           <h3 class="searchHeader text-uppercase">Search by City</h3>
           <form id="search-form" class="searchForm">
-            <label class="searchL abel" for="city name">City</label>
+            <label class="searchLabel" for="city name">City</label>
             <input id="search-input" class="searchInput" type="text" placeholder="Type city name here" autofocus/>
           <button id="submit-button" class="submitBtn">Search</button>
           </form>
         </div>
 
         <div id="search-history" class="searchHistory">
-
           <h3 class="historyHeader text-uppercase">Last Searches</h3>
           <div id="cities" class="lastCities"></div>
-
         </div>
 
       </div>
       <div class="col-12 col-md-8">
 
         <div id="weather-today" class="weatherToday">
-          <h2 class="cityName"><i id="weatherIcon" class=""></i></h2>
+          <h2 class="cityName text-uppercase"></h2>
           <p class="date"></p>
           <p class="temp"></p>
           <p class="humidity"></p>
@@ -75,8 +73,8 @@
         </div>
 
         <div id="weather-forecast" class="weatherForecast">
-          <h2 class="forecastTitle">Weather Forecast: <span id="forecast-search-term"></span></h2>
-          <div id="weather-list" class="weather"></div>
+          <h3 class="forecastHeader text-uppercase">Weather Forecast</h3>
+          <div id="5day" class="forecast5day"></div>
         </div>
 
       </div>
