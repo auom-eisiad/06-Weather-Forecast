@@ -12,13 +12,14 @@ submit.on("click", function(event) {
 
   city = searchInput.val().trim();
 
+  getCityCoord();
   getWeatherAPI();
 });
 
-function getWeatherAPI() {
+function getCityCoord() {
   // Link the city and apikey to the url
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
-  // console.log(queryURL);
+  //console.log(queryURL);
   
   // Send an API request to the third party to get city longitude and latitude
   fetch(queryURL)
@@ -28,12 +29,29 @@ function getWeatherAPI() {
   .then(function (data) {
     // console.log(data);
     const cityData = {
-      city: city,
+      city: data.name,
       lat: data.coord.lat,
       lon: data.coord.lon
     }
     
     // console.log(cityData);
     return cityData;
+  })
+  .then(function (data) {
+    getWeatherAPI(data);
   });
+}
+
+function getWeatherAPI(data) {
+  // Link city's coordinates and apikey to the url
+  var requestUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=` + apiKey;
+  // console.log(requestUrl);
+
+  fetch(requestUrl)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    // console.log(data);
+  })
 }
