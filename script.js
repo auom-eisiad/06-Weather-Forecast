@@ -52,9 +52,15 @@ function getWeatherAPI(data) {
     return response.json();
   })
   .then(function(data) {
-    // console.log(data);
+    console.log(data);
     $(".weatherToday").removeClass("d-none");
     $(".cityName").text(city);
-    $(".cityName").append(" (" + dayjs().format('YYYY-MM-DD') + ")");
+
+    var currentTime = dayjs().format('YYYY-MM-DD');
+    $(".cityName").append(" (" + currentTime + ")");
+    
+    var weatherIcon = $("<img/>")
+    weatherIcon.attr("src", `http://openweathermap.org/img/wn/` + data.list[0].weather[0].icon + `.png`);
+    $(".cityName").append(weatherIcon);
   });
 }

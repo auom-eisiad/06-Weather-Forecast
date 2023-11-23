@@ -63,6 +63,7 @@ main {
 .historyHeader,
 .forecastHeader,
 .cityName {
+    font-family: var(--ftfam3);
     background-color: var(--c3);
     padding: 2.5%;
     border-radius: calc(-0.8200000000000003rem - 1px) calc(-0.8200000000000003rem - 1px) 0 0;
@@ -114,6 +115,10 @@ main {
     border-radius: var(--brad);
 }
 
+.lastCities {
+  min-height: 40vh;
+}
+
 h2,
 h3 {
     font-weight: 700;
@@ -136,12 +141,6 @@ h3 {
   background-color: var(--c2);
   border: 3px solid var(--c3);
   border-radius: var(--brad);
-}
-
-.cityName {
-    background-color: var(--c3);
-    padding: 2.5%;
-    border-radius: calc(-0.8200000000000003rem - 1px) calc(-0.8200000000000003rem - 1px) 0 0;
 }
 
 #weatherIcon::after {
