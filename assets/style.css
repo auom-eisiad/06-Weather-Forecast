@@ -143,6 +143,13 @@ h3 {
   border-radius: var(--brad);
 }
 
+.temp,
+.humidity,
+.windspd {
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
 #weatherIcon::after {
   color: var(--w);
 }

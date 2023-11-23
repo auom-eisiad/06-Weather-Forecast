@@ -62,5 +62,21 @@ function getWeatherAPI(data) {
     var weatherIcon = $("<img/>")
     weatherIcon.attr("src", `http://openweathermap.org/img/wn/` + data.list[0].weather[0].icon + `.png`);
     $(".cityName").append(weatherIcon);
+
+    // Max temp kelvin convert to fahrenheit
+    const tempMaxKelvin = parseFloat(data.list[0].main.temp_max);
+    const tempMaxCelsius = tempMaxKelvin - 273.15;
+    const tempMaxFahrenheit = (tempMaxCelsius * 9/5) + 32;
+    const tempMax = tempMaxFahrenheit.toFixed(1);
+  
+    // Min temp kelvin convert to fahrenheit
+    const tempMinKelvin = parseFloat(data.list[0].main.temp_min);
+    const tempMinCelsius = tempMinKelvin - 273.15;
+    const tempMinFahrenheit = (tempMinCelsius * 9/5) + 32;
+    const tempMin = tempMinFahrenheit.toFixed(1);
+
+    $(".temp").text(`Temp: ` + tempMax + `° /` + tempMin + `°`);
+    $(".humidity").text(`Humidity: ` + data.list[0].main.humidity);
+    $(".windspd").text(`Wind Speed: ` + data.list[0].wind.speed);
   });
 }
