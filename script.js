@@ -118,9 +118,18 @@ function fiveDay(data) {
       const tempMinFahrenheit = (tempMinCelsius * 9/5) + 32;
       const tempMin = tempMinFahrenheit.toFixed(1);
 
+      var date = document.createElement("p");
+      // var unixDate = `${data.list[i].dt}`;
+      // date.textContent = dayjs.unix(unixDate).format("MM/DD/YYYY");
+
       var icon = document.createElement("img");
       icon.src = fiveDayweatherURL;
       icon.alt = "5 Day Weather Icons";
+      
+      var currentTime = dayjs().format('YYYY-MM-DD');
+      var newDate = dayjs(currentTime).add(i, 'day');
+      var formattedDate = newDate.format('YYYY-MM-DD');
+      date.textContent = `(${formattedDate})`;
 
       var temp = document.createElement("p");
       temp.textContent = `Temp: ${tempMax}° / ${tempMin}°`;
@@ -132,7 +141,7 @@ function fiveDay(data) {
       windspd.textContent = `Wind Speed: ${data.list[i].wind.speed}`;
 
       // Append weather info to the forecast display
-      box.append(icon, temp, humid, windspd);
+      box.append(icon, date, temp, humid, windspd);
       fiveDayDisplay.append(box);
     }
   });
