@@ -97,10 +97,13 @@ function fiveDay(data) {
     $(".weatherForecast").removeClass("d-none");
     var fiveDayDisplay = $(".forecast5day");
 
+    // Clear the prev weather report so it doesn't continue to loop/ add on
+    fiveDayDisplay.empty();
+
     // Loop through the weather data for the next 5 days
     for (var i = 1; i < 6; i++) {
       var box = document.createElement("div");
-      box.classList.add("display5day", "col-2", "m-2");
+      box.classList.add("display5day" + i, "col-2", "m-2");
 
       // Weather information
       var fiveDayweatherURL = `http://openweathermap.org/img/wn/` + data.list[i].weather[0].icon + `.png`;

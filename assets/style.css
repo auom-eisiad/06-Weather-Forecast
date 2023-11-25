@@ -153,11 +153,14 @@ h3 {
 .forecast5day {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin-left: 1rem;
+  justify-content: space-evenly;
+  margin-left: 1.5rem;
 }
 
-.display5day {
+.display5day1,
+.display5day2,
+.display5day3,
+.display5day4 {
   border-right: solid 2px var(--c3);
 }
 
