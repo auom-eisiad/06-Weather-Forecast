@@ -150,15 +150,15 @@ h3 {
   justify-content: space-between;
 }
 
-.temp,
-.humidity,
-.windspd {
-  margin-top: 1rem;
-  margin-left: 3rem;
+.forecast5day {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 1rem;
 }
 
-#weatherIcon::after {
-  color: var(--w);
+.display5day {
+  border-right: solid 2px var(--c3);
 }
 
 /* HEIGHT / WIDTH UTILS */

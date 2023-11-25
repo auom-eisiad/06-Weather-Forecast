@@ -95,27 +95,42 @@ function fiveDay(data) {
   .then(function(data) {
     console.log(data);
     $(".weatherForecast").removeClass("d-none");
+    var fiveDayDisplay = $(".forecast5day");
 
+    // Loop through the weather data for the next 5 days
     for (var i = 1; i < 6; i++) {
-      var fiveDayWeather = $(".forecast5day");
+      var box = document.createElement("div");
+      box.classList.add("display5day", "col-2", "m-2");
+
+      // Weather information
       var fiveDayweatherURL = `http://openweathermap.org/img/wn/` + data.list[i].weather[0].icon + `.png`;
-      fiveDayWeather.append(`<img src="${fiveDayweatherURL}" alt="5 Day Weather Icons">`);
-      
-      // Max temp kelvin convert to fahrenheit
+
       const tempMaxKelvin = parseFloat(data.list[i].main.temp_max);
       const tempMaxCelsius = tempMaxKelvin - 273.15;
       const tempMaxFahrenheit = (tempMaxCelsius * 9/5) + 32;
       const tempMax = tempMaxFahrenheit.toFixed(1);
 
-      // Min temp kelvin convert to fahrenheit
       const tempMinKelvin = parseFloat(data.list[i].main.temp_min);
       const tempMinCelsius = tempMinKelvin - 273.15;
       const tempMinFahrenheit = (tempMinCelsius * 9/5) + 32;
       const tempMin = tempMinFahrenheit.toFixed(1);
 
-      fiveDayWeather.append(`Temp: ` + tempMax + `° /` + tempMin + `°`);
-      fiveDayWeather.append(`Humidity: ` + data.list[i].main.humidity);
-      fiveDayWeather.append(`Wind Speed: ` + data.list[i].wind.speed);
+      var icon = document.createElement("img");
+      icon.src = fiveDayweatherURL;
+      icon.alt = "5 Day Weather Icons";
+
+      var temp = document.createElement("p");
+      temp.textContent = `Temp: ${tempMax}° / ${tempMin}°`;
+
+      var humid = document.createElement("p");
+      humid.textContent = `Humidity: ${data.list[i].main.humidity}`;
+
+      var windspd = document.createElement("p");
+      windspd.textContent = `Wind Speed: ${data.list[i].wind.speed}`;
+
+      // Append weather info to the forecast display
+      box.append(icon, temp, humid, windspd);
+      fiveDayDisplay.append(box);
     }
   });
 }
