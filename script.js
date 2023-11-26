@@ -40,6 +40,22 @@ function searchHistory() {
   }
 }
 
+function clickHistory() {
+  $(document).on("click", ".savedBtn", function(event) {
+    event.preventDefault();
+    var citySaved = $(this).text();
+
+    searchInput.val(citySaved);
+    
+    searchHistory();
+    getCityCoord();
+    getWeatherAPI();
+    fiveDay();
+  });
+
+  clickHistory();
+}
+
 function getCityCoord() {
   // Link the city and apikey to the url
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
@@ -180,3 +196,5 @@ function fiveDay(data) {
     }
   });
 }
+
+clickHistory();
