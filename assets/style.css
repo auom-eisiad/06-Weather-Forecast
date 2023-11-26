@@ -54,7 +54,7 @@ main {
 
 .searchBox {
   margin: 0 0 20px 0;
-  background-color: var(--c2);
+  background-color: #1c1c1c;
   border: 3px solid var(--c3);
   border-radius: var(--brad);
 }
@@ -110,7 +110,7 @@ main {
 
 .searchHistory {
     margin: 0 0 20px 0;
-    background-color: var(--c2);
+    background-color: #1c1c1c;
     border: 3px solid var(--c3);
     border-radius: var(--brad);
 }
@@ -139,7 +139,7 @@ h3 {
 .weatherToday,
 .weatherForecast {
   margin: 0 0 20px 0;
-  background-color: var(--c2);
+  background-color: #1c1c1c;
   border: 3px solid var(--c3);
   border-radius: var(--brad);
 }
@@ -155,7 +155,7 @@ h3 {
   flex-direction: row;
   justify-content: space-evenly;
   padding-left: 1.5rem;
-  background-color: #787878;
+  background-color: #1c1c1c;
 }
 
 .display5day1,

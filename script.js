@@ -58,12 +58,18 @@ function getWeatherAPI(data) {
     $(".weatherToday").removeClass("d-none");
     $(".cityName").text(city);
 
+    // Clear the prev weather report so it doesn't continue to loop/ add on
+    $(".weather").empty();
+
     var currentTime = dayjs().format('YYYY-MM-DD');
-    $(".cityName").append(" (" + currentTime + ")");
+    $(".cityName").append(" (" + currentTime + ")").css("color", "#5691b3");
     
     var weatherIcon = $("<img/>")
     weatherIcon.attr("src", `http://openweathermap.org/img/wn/` + data.list[0].weather[0].icon + `.png`);
     $(".cityName").append(weatherIcon);
+
+    var box = document.createElement("div");
+    box.classList.add("displayToday", "m-3");
 
     // Max temp kelvin convert to fahrenheit
     const tempMaxKelvin = parseFloat(data.list[0].main.temp_max);
@@ -77,9 +83,13 @@ function getWeatherAPI(data) {
     const tempMinFahrenheit = (tempMinCelsius * 9/5) + 32;
     const tempMin = tempMinFahrenheit.toFixed(1);
 
-    $(".temp").text(`Temp: ` + tempMax + `° /` + tempMin + `°`);
-    $(".humidity").text(`Humidity: ` + data.list[0].main.humidity);
-    $(".windspd").text(`Wind Speed: ` + data.list[0].wind.speed);
+    var temp = $("<p>").text(`Temp: ${tempMax}° / ${tempMin}°`);
+    var humid = $("<p>").text(`Humidity: ${data.list[0].main.humidity}`);
+    var windspd = $("<p>").text(`Wind Speed: ${data.list[0].wind.speed}`);
+
+    // Append elements to the box
+    $(box).append(temp, humid, windspd);
+    $(".weather").append(box);
   });
 }
 
@@ -129,7 +139,8 @@ function fiveDay(data) {
       var currentTime = dayjs().format('YYYY-MM-DD');
       var newDate = dayjs(currentTime).add(i, 'day');
       var formattedDate = newDate.format('YYYY-MM-DD');
-      date.textContent = `(${formattedDate})`;
+      date.textContent = `${formattedDate}`;
+      date.style.color = "#5691b3";
 
       var temp = document.createElement("p");
       temp.textContent = `Temp: ${tempMax}° / ${tempMin}°`;
