@@ -12,9 +12,13 @@ submit.on("click", function(event) {
 
   city = searchInput.val().trim();
 
-  getCityCoord();
-  getWeatherAPI();
-  fiveDay();
+  if (city === "") {
+    alert("Please enter a city/ state!");
+  } else {
+    getCityCoord();
+    getWeatherAPI();
+    fiveDay();
+  }
 });
 
 function getCityCoord() {
@@ -54,7 +58,7 @@ function getWeatherAPI(data) {
     return response.json();
   })
   .then(function(data) {
-    console.log(data);
+    // console.log(data);
     $(".weatherToday").removeClass("d-none");
     $(".cityName").text(city);
 
@@ -103,7 +107,7 @@ function fiveDay(data) {
     return response.json();
   })
   .then(function(data) {
-    console.log(data);
+    // console.log(data);
     $(".weatherForecast").removeClass("d-none");
     var fiveDayDisplay = $(".forecast5day");
 
