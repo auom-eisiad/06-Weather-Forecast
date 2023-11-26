@@ -1,6 +1,5 @@
  // Global variables
 var searchInput = $("#search-input");
-var searchHistory = $("#search-history");
 var submit = $("#submit-button");
 
 // Hold the API key and store city name from user's input
@@ -15,11 +14,31 @@ submit.on("click", function(event) {
   if (city === "") {
     alert("Please enter a city/ state!");
   } else {
+    searchHistory(city);
     getCityCoord();
     getWeatherAPI();
     fiveDay();
   }
 });
+
+function searchHistory() {
+  const cityHistory = JSON.parse(localStorage.getItem("cities")) || [];
+
+  if (!cityHistory.some((item) => item.city === city)) {
+    cityHistory.push({ city: city });
+    localStorage.setItem("cities", JSON.stringify(cityHistory));
+  }
+
+  var searchHistory = $(".lastCities");
+  searchHistory.empty();
+
+  for (i = 0; i < cityHistory.length; i++) {
+    var btn = document.createElement("button");
+    btn.classList.add("savedBtn", "p-3", "m-3", "text-centered", "text-uppercase");
+    btn.textContent = `${cityHistory[i].city}`;
+    searchHistory.append(btn);
+  }
+}
 
 function getCityCoord() {
   // Link the city and apikey to the url
@@ -38,7 +57,7 @@ function getCityCoord() {
       lat: data.coord.lat,
       lon: data.coord.lon
     }
-    
+
     // console.log(cityData);
     return cityData;
   })
@@ -88,8 +107,8 @@ function getWeatherAPI(data) {
     const tempMin = tempMinFahrenheit.toFixed(1);
 
     var temp = $("<p>").text(`Temp: ${tempMax}° / ${tempMin}°`);
-    var humid = $("<p>").text(`Humidity: ${data.list[0].main.humidity}`);
-    var windspd = $("<p>").text(`Wind Speed: ${data.list[0].wind.speed}`);
+    var humid = $("<p>").text(`Humidity: ${data.list[0].main.humidity}%`);
+    var windspd = $("<p>").text(`Wind Speed: ${data.list[0].wind.speed} m/s`);
 
     // Append elements to the box
     $(box).append(temp, humid, windspd);
@@ -150,10 +169,10 @@ function fiveDay(data) {
       temp.textContent = `Temp: ${tempMax}° / ${tempMin}°`;
 
       var humid = document.createElement("p");
-      humid.textContent = `Humidity: ${data.list[i].main.humidity}`;
+      humid.textContent = `Humidity: ${data.list[i].main.humidity}%`;
 
       var windspd = document.createElement("p");
-      windspd.textContent = `Wind Speed: ${data.list[i].wind.speed}`;
+      windspd.textContent = `Wind Speed: ${data.list[i].wind.speed} m/s`;
 
       // Append weather info to the forecast display
       box.append(icon, date, temp, humid, windspd);
