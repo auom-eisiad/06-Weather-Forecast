@@ -33,10 +33,37 @@ function searchHistory() {
   searchHistory.empty();
 
   for (i = 0; i < cityHistory.length; i++) {
+    var btnContainer = document.createElement("div");
+    btnContainer.classList.add("containBtn");
+
     var btn = document.createElement("button");
-    btn.classList.add("savedBtn", "p-3", "m-3", "text-centered", "text-uppercase");
+    btn.classList.add("savedBtn", "p-3", "text-centered", "text-uppercase");
     btn.textContent = `${cityHistory[i].city}`;
-    searchHistory.append(btn);
+
+    var removeBtn = document.createElement("button");
+    removeBtn.classList.add("removeBtn", "p-3", "text-centered");
+    removeBtn.textContent = `X`;
+
+    // Add a unique identifier to each button
+    const btnIdentifier = `cityBtn_${i}`;
+    btn.setAttribute("data-identifier", btnIdentifier);
+    removeBtn.setAttribute("data-identifier", btnIdentifier);
+
+    btnContainer.append(btn);
+    btnContainer.append(removeBtn);
+    searchHistory.append(btnContainer);
+
+    (function(index, identifier) {
+      $(removeBtn).on("click", function() {
+        // Use the identifier to find and remove the correct button container
+        const btnContainerToRemove = $(`[data-identifier="${identifier}"]`);
+        btnContainerToRemove.remove();
+  
+        // Remove the city from local storage
+        cityHistory.splice(index, 1);
+        localStorage.setItem("cities", JSON.stringify(cityHistory));
+      });
+    })(i, btnIdentifier);
   }
 }
 
@@ -45,21 +72,18 @@ function clickHistory() {
     event.preventDefault();
     var citySaved = $(this).text();
 
+    // Fill in the search bar with the city saved in the history that the user clicked on
     searchInput.val(citySaved);
     
-    searchHistory();
-    getCityCoord();
-    getWeatherAPI();
-    fiveDay();
+    // Runs the event listener on the sumbit button when clicked
+    submit.click();
   });
-
-  clickHistory();
 }
 
 function getCityCoord() {
   // Link the city and apikey to the url
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
-  //console.log(queryURL);
+  // console.log(queryURL);
   
   // Send an API request to the third party to get city longitude and latitude
   fetch(queryURL)
