@@ -106,7 +106,7 @@ main {
     border-radius: var(--brad);
     font-size: 1.3rem;
     text-decoration: none;
-    color: var(--b);
+    color: var(--w);
     border: none;
     outline: none;
     background-color: var(--c1);
@@ -120,11 +120,11 @@ main {
   background-color: #1c1c1c;
   border: 3px solid var(--c3);
   border-radius: var(--brad);
-  min-height: 33.2vh;
+  min-height: 35vh;
 }
 
 .lastCities {
-  max-height: 33.2vh;
+  max-height: 30vh;
   overflow: scroll;
 }
 
@@ -144,14 +144,14 @@ main {
 .savedBtn {
   font-family: var(--ftfam3);
   font-weight: 700;
-  background-color: #37b0c6;
+  background-color: var(--c1);
   color: var(--w);
 }
 
 .removeBtn {
   font-family: var(--ftfam3);
   font-weight: 700;
-  background-color: #b50d0d;
+  background-color: #9f0d0d;
   color: var(--w);
 }
 
@@ -198,7 +198,7 @@ h3 {
   justify-content: space-evenly;
   padding-left: 1rem;
   background-color: #1c1c1c;
-  min-height: 28.5vh;
+  min-height: 25vh;
 }
 
 .display5day1,
