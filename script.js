@@ -6,11 +6,15 @@ var submit = $("#submit-button");
 var apiKey = "26969c8a80538530cc05b672bf826665";
 var city;
 
+// Search button event
 submit.on("click", function(event) {
   event.preventDefault();
 
+  // retrieve user's input in the search bar
   city = searchInput.val().trim();
 
+  // If the user does not input a city, an alert message will pop up
+  // But if they provide a valid city, display weather forecast
   if (city === "") {
     alert("Please enter a city/ state!");
   } else {
@@ -21,17 +25,24 @@ submit.on("click", function(event) {
   }
 });
 
+// Display previously searched cities/ states
 function searchHistory() {
+
+  // Get and store cities in an object array
   const cityHistory = JSON.parse(localStorage.getItem("cities")) || [];
 
+  // Validate that if the city/ state has already been inputted before and if not, add it to the array
   if (!cityHistory.some((item) => item.city === city)) {
     cityHistory.push({ city: city });
     localStorage.setItem("cities", JSON.stringify(cityHistory));
   }
 
   var searchHistory = $(".lastCities");
+
+  // Clear the prev search history so it doesn't continue to loop/ add on
   searchHistory.empty();
 
+  // For each city/ state, create a button 
   for (i = 0; i < cityHistory.length; i++) {
     var btnContainer = document.createElement("div");
     btnContainer.classList.add("containBtn");
@@ -49,10 +60,12 @@ function searchHistory() {
     btn.setAttribute("data-identifier", btnIdentifier);
     removeBtn.setAttribute("data-identifier", btnIdentifier);
 
+    // Append all the buttons together
     btnContainer.append(btn);
     btnContainer.append(removeBtn);
     searchHistory.append(btnContainer);
 
+    // When the user press the delete button, remove the city and delete button from the search history
     (function(index, identifier) {
       $(removeBtn).on("click", function() {
         // Use the identifier to find and remove the correct button container
@@ -67,6 +80,7 @@ function searchHistory() {
   }
 }
 
+// When the city is clicked, the page will display that city's weather information
 function clickHistory() {
   $(document).on("click", ".savedBtn", function(event) {
     event.preventDefault();
@@ -80,6 +94,7 @@ function clickHistory() {
   });
 }
 
+// Get the city's coordinates to get their weather information
 function getCityCoord() {
   // Link the city and apikey to the url
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
@@ -107,30 +122,39 @@ function getCityCoord() {
   });
 }
 
+// Taking the info from getCityCoord() we can now get the weather information 
 function getWeatherAPI(data) {
   // Link city's coordinates and apikey to the url
   var requestUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=` + apiKey;
   // console.log(requestUrl);
 
+  // Fetch the data from the url
   fetch(requestUrl)
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
     // console.log(data);
+
+    // Remove the class display none from the weather today
     $(".weatherToday").removeClass("d-none");
+
+    // Display text of the city name from the data
     $(".cityName").text(city);
 
     // Clear the prev weather report so it doesn't continue to loop/ add on
     $(".weather").empty();
 
+    // Display current date
     var currentTime = dayjs().format('YYYY-MM-DD');
     $(".cityName").append(" (" + currentTime + ")").css("color", "#5691b3");
     
+    // Display the current weather icon from the data
     var weatherIcon = $("<img/>")
     weatherIcon.attr("src", `http://openweathermap.org/img/wn/` + data.list[0].weather[0].icon + `.png`);
     $(".cityName").append(weatherIcon);
 
+    // Weather information
     var box = document.createElement("div");
     box.classList.add("displayToday", "m-3");
 
@@ -156,6 +180,7 @@ function getWeatherAPI(data) {
   });
 }
 
+// Get weather information for the next five days and display in the weather dashboard
 function fiveDay(data) {
   // Link city's coordinates and apikey to the url
   var requestUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=` + apiKey;
@@ -167,6 +192,8 @@ function fiveDay(data) {
   })
   .then(function(data) {
     // console.log(data);
+
+    // Remove the class display none from the weather today
     $(".weatherForecast").removeClass("d-none");
     var fiveDayDisplay = $(".forecast5day");
 
@@ -221,4 +248,5 @@ function fiveDay(data) {
   });
 }
 
+// Callback on the history click function
 clickHistory();

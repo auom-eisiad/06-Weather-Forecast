@@ -2,7 +2,7 @@
 
 ## Description
 
---
+Before heading out for the day, one needs to be prepared for the weather. With this webpage, the user is able to figure out what the weather is going to be like today in their location and the weather for the next 5 days. 
 
 ## Table of Contents (Optional)
 
