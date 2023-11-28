@@ -97,7 +97,7 @@ function clickHistory() {
 // Get the city's coordinates to get their weather information
 function getCityCoord() {
   // Link the city and apikey to the url
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
   // console.log(queryURL);
   
   // Send an API request to the third party to get city longitude and latitude
@@ -125,7 +125,7 @@ function getCityCoord() {
 // Taking the info from getCityCoord() we can now get the weather information 
 function getWeatherAPI(data) {
   // Link city's coordinates and apikey to the url
-  var requestUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=` + apiKey;
+  var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=` + apiKey;
   // console.log(requestUrl);
 
   // Fetch the data from the url
@@ -151,7 +151,7 @@ function getWeatherAPI(data) {
     
     // Display the current weather icon from the data
     var weatherIcon = $("<img/>")
-    weatherIcon.attr("src", `http://openweathermap.org/img/wn/` + data.list[0].weather[0].icon + `.png`);
+    weatherIcon.attr("src", `https://openweathermap.org/img/wn/` + data.list[0].weather[0].icon + `.png`);
     $(".cityName").append(weatherIcon);
 
     // Weather information
@@ -183,7 +183,7 @@ function getWeatherAPI(data) {
 // Get weather information for the next five days and display in the weather dashboard
 function fiveDay(data) {
   // Link city's coordinates and apikey to the url
-  var requestUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=` + apiKey;
+  var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=` + apiKey;
   // console.log(requestUrl);
 
   fetch(requestUrl)
@@ -206,7 +206,7 @@ function fiveDay(data) {
       box.classList.add("display5day" + i, "col-2", "m-2");
 
       // Weather information
-      var fiveDayweatherURL = `http://openweathermap.org/img/wn/` + data.list[i].weather[0].icon + `.png`;
+      var fiveDayweatherURL = `https://openweathermap.org/img/wn/` + data.list[i].weather[0].icon + `.png`;
 
       const tempMaxKelvin = parseFloat(data.list[i].main.temp_max);
       const tempMaxCelsius = tempMaxKelvin - 273.15;
