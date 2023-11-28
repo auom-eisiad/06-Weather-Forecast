@@ -126,7 +126,7 @@ function getCityCoord() {
 function getWeatherAPI(data) {
   // Link city's coordinates and apikey to the url
   var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${data.lat}&lon=${data.lon}&appid=` + apiKey;
-  // console.log(requestUrl);
+  console.log(requestUrl);
 
   // Fetch the data from the url
   fetch(requestUrl)
